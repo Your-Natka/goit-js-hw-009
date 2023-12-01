@@ -12,18 +12,23 @@ let timerId = null;
 dataStartRef.addEventListener('click', onStart);
 dataStopRef.addEventListener('click', onStop);
 
+dataStopRef.setAttribute('disabled', 'disabled');
+
 // Function start event listener
 function onStart() {
   timerId = setInterval(getBgColor, 1000);
-
-  dataStartRef.toggleAttribute('disabled');
+  toggleDisabled();
 }
 
 // Function stop event listener
 function onStop() {
   clearInterval(timerId);
+  toggleDisabled();
+}
 
-  dataStartRef.removeAttribute('disabled');
+function toggleDisabled() {
+  dataStartRef.toggleAttribute('disabled');
+  dataStopRef.toggleAttribute('disabled');
 }
 
 // Function set random bg color
